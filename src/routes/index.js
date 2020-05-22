@@ -1,12 +1,14 @@
 const { Router } = require('express');
 const router = Router();
-const { getMessage } = require('../controllers/index.controller');
+const { getPageById, getButtonById, getUserById } = require('../controllers/index.controller');
 
 // router.get('/users', getUsers);
 // router.get('/users/:id', getUserById);
 // router.post('/users', createUser);
 // router.put('/users/:id', updateUser);
 // router.delete('/users/:id', deleteUser);
-router.get('/', getMessage );
+router.get('/users/:id', getUserById);
+router.get('/page/:id', getPageById);
+router.get('/button/:id', getButtonById);
 
 module.exports = router;
