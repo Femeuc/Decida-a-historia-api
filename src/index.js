@@ -6,9 +6,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
 // Routes
-app.get('/', (resq, resp) => {
-    resp.json({ message: "Hello World!" });
-})
+app.use(require('./routes/index'));
 
 let port = process.env.PORT;
 if (port == null || port == "") {
