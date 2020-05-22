@@ -30,14 +30,14 @@ const getPageById = async (req, res) => {
     const response = await pool.query("SELECT * FROM page WHERE id = $1", [
         req.params.id
     ]);
-    res.status(200).json(response.rows);
+    res.status(200).json({response: response.rows});
 }
 
 const getButtonById = async (req, res) => {
     const response = await pool.query("SELECT * FROM button WHERE id = $1", [
         req.params.id
     ]);
-    res.status(200).json(response.rows);
+    res.status(200).json({response: response.rows});
 }
 
 module.exports = {
