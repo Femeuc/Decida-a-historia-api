@@ -23,7 +23,7 @@ const getUserById = async (req, res) => {
     const response = await pool.query("SELECT * FROM users WHERE id = $1", [
         req.params.id
     ]);
-    res.status(200).json(response.rows);
+    res.status(200).json({response: response.rows});
 }
 
 const getPageById = async (req, res) => {
