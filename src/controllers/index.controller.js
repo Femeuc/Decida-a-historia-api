@@ -1,22 +1,23 @@
 const { Pool } = require('pg');
-var pool = new Pool('postgres://mssgbedvtcvmim:67af7195c5906b5b0336a38c80e769bf2b901a6fb9d06e385ee88467a98b876e@ec2-18-210-214-86.compute-1.amazonaws.com:5432/dbe3ockgmrsitv');
+const parse = require('pg-connection-string').parse;
+const pool;
 
-// const ENV = "prod"; // prod -> production;  dev -> developtment
+const ENV = "prod"; // prod -> production;  dev -> developtment
 
-// if(ENV == "prod") { 
-//     // Remote Database
-//     const DATABASE_URL = "postgres://mssgbedvtcvmim:67af7195c5906b5b0336a38c80e769bf2b901a6fb9d06e385ee88467a98b876e@ec2-18-210-214-86.compute-1.amazonaws.com:5432/dbe3ockgmrsitv";
-//     pool = new Pool(DATABASE_URL);
-// } else if(ENV == "dev"){ 
-//     // Local Database
-//     pool = new Pool({
-//         host: 'localhost',
-//         user: 'postgres',
-//         password: 'root',
-//         database: 'femeuc',
-//         port: '5432'
-//     });
-// } 
+if(ENV == "prod") { 
+    // Remote Database
+    const DATABASE_URL = parse("postgres://mssgbedvtcvmim:67af7195c5906b5b0336a38c80e769bf2b901a6fb9d06e385ee88467a98b876e@ec2-18-210-214-86.compute-1.amazonaws.com:5432/dbe3ockgmrsitv");
+    pool = new Pool(DATABASE_URL);
+} else if(ENV == "dev"){ 
+    // Local Database
+    pool = new Pool({
+        host: 'localhost',
+        user: 'postgres',
+        password: 'root',
+        database: 'femeuc',
+        port: '5432'
+    });
+} 
 
 const getUserById = async (req, res) => {
     const response = await pool.query("SELECT * FROM users WHERE id = $1", [
