@@ -1,0 +1,25 @@
+{
+  "name": "decida-a-historia-api",
+  "version": "1.0.0",
+  "description": "This is the API of the game called \"Decida a História\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Femeuc/Decida-a-historia-api.git"
+  },
+  "keywords": [
+    "interactive",
+    "game",
+    "story",
+    "decision"
+  ],
+  "author": "Felipe Mesquita Uchoa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Femeuc/Decida-a-historia-api/issues"
+  },
+  "homepage": "https://github.com/Femeuc/Decida-a-historia-api#readme"
+}
