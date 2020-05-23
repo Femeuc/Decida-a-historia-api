@@ -33,6 +33,11 @@ const getStoryById = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const getAllStories = async (req, res) => {
+    const response = await pool.query("SELECT * FROM story");
+    res.status(200).json({response: response.rows});
+}
+
 const getPageById = async (req, res) => {
     const response = await pool.query("SELECT * FROM page WHERE id = $1", [
         req.params.id
@@ -50,6 +55,7 @@ const getButtonById = async (req, res) => {
 module.exports = {
     getUserById,
     getStoryById,
+    getAllStories,
     getPageById,
     getButtonById
 }

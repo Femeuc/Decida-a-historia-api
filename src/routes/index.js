@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { getPageById, getButtonById, getUserById, getStoryById } = require('../controllers/index.controller');
+const { getPageById, getButtonById, getUserById, getStoryById, getAllStories } = require('../controllers/index.controller');
 
 // router.get('/users', getUsers);
 // router.get('/users/:id', getUserById);
@@ -9,6 +9,7 @@ const { getPageById, getButtonById, getUserById, getStoryById } = require('../co
 // router.delete('/users/:id', deleteUser);
 router.get('/users/:id', getUserById);
 router.get('/story/:id', getStoryById);
+router.get('/story', getAllStories);
 router.get('/page/:id', getPageById);
 router.get('/button/:id', getButtonById);
 
