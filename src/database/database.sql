@@ -25,3 +25,14 @@ ALTER TABLE "page" ADD FOREIGN KEY ("button1") REFERENCES "button" ("id");
 ALTER TABLE "page" ADD FOREIGN KEY ("button2") REFERENCES "button" ("id");
 
 ALTER TABLE "button" ADD FOREIGN KEY ("linked_page") REFERENCES "page" ("id");
+
+CREATE TYPE category AS ENUM ('action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror', 'isekai', 'mistery', 'romance', 'science_fiction', 'other');
+
+CREATE TABLE "story" (
+  "id" SERIAL PRIMARY KEY,
+  "genre" category NOT NULL,
+  "title" varchar NOT NULL,
+  "description" text NOT NULL,
+  "beginning_page" int
+);
+ALTER TABLE "story" ADD FOREIGN KEY ("beginning_page") REFERENCES "page" ("id");
