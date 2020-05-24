@@ -19,6 +19,7 @@ if(ENV == "prod") {
     });
 } 
 
+// GET routes
 const getUserById = async (req, res) => {
     const response = await pool.query("SELECT * FROM users WHERE id = $1", [
         req.params.id
@@ -45,9 +46,24 @@ const getPageById = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const getAllPages = async (req, res) => {
+    const response = await pool.query("SELECT * FROM page");
+    res.status(200).json({response: response.rows});
+}
+
 const getButtonById = async (req, res) => {
     const response = await pool.query("SELECT * FROM button WHERE id = $1", [
         req.params.id
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
+// POST routes
+const createStoryInitialPage = async (req, res) => {
+    const response = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3)", [
+        req.body.story,
+        req.body.button1,
+        req.body.button2
     ]);
     res.status(200).json({response: response.rows});
 }
@@ -57,7 +73,9 @@ module.exports = {
     getStoryById,
     getAllStories,
     getPageById,
-    getButtonById
+    getAllPages,
+    getButtonById,
+    createStoryInitialPage
 }
 
 // const getUserById = async (req, res) => {
