@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const parse = require('pg-connection-string').parse;
 var pool = null;
 
-const ENV = "prod"; // prod -> production;  dev -> developtment
+const ENV = "dev"; // prod -> production;  dev -> developtment
 
 if(ENV == "prod") { 
     // Remote Database
@@ -59,11 +59,29 @@ const getButtonById = async (req, res) => {
 }
 
 // POST routes
-const createStoryInitialPage = async (req, res) => {
+const createPage = async (req, res) => {
     const response = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3)", [
         req.body.story,
         req.body.button1,
         req.body.button2
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
+const createStory = async (req, res) => {
+    const response = await pool.query("INSERT INTO story(genre, title, description) VALUES ($1, $2, $3)", [
+        req.body.genre,
+        req.body.title,
+        req.body.description
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
+// PUT routes
+const updateStory = async (req, res) => {
+    const response = await pool.query("UPDATE story SET " + req.body.name + " = $1 WHERE id = $2", [
+        req.body.value,
+        req.params.id
     ]);
     res.status(200).json({response: response.rows});
 }
@@ -75,7 +93,11 @@ module.exports = {
     getPageById,
     getAllPages,
     getButtonById,
-    createStoryInitialPage
+
+    createPage,
+    createStory,
+
+    updateStory
 }
 
 // const getUserById = async (req, res) => {

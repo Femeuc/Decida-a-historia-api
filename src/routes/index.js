@@ -7,7 +7,12 @@ const {
     getUserById, 
     getStoryById, 
     getAllStories,
-    createStoryInitialPage,
+
+    createPage,
+    createStory,
+
+    updateStory
+
 } = require('../controllers/index.controller');
 
 // router.get('/users', getUsers);
@@ -23,6 +28,9 @@ router.get('/page/:id', getPageById);
 router.get('/page', getAllPages);
 router.get('/button/:id', getButtonById);
 
-router.post('/page/add', createStoryInitialPage);
+router.post('/page/add', createPage);
+router.post('/story/add', createStory);
+
+router.put('/story/update/:id', updateStory);
 
 module.exports = router;
