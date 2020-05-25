@@ -65,7 +65,7 @@ const createPage = async (req, res) => {
         req.body.button1,
         req.body.button2
     ]);
-    res.status(200).json({response: response.rows});
+    res.status(200).json({response: req.body});
 }
 
 const createStory = async (req, res) => {
@@ -74,7 +74,7 @@ const createStory = async (req, res) => {
         req.body.title,
         req.body.description
     ]);
-    res.status(200).json({response: response.rows});
+    res.status(200).json({response: req.body});
 }
 
 // PUT routes
