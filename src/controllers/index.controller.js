@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const parse = require('pg-connection-string').parse;
 var pool = null;
 
-const ENV = "prod"; // prod -> production;  dev -> developtment
+const ENV = "dev"; // prod -> production;  dev -> developtment
 
 if(ENV == "prod") { 
     // Remote Database
@@ -34,6 +34,13 @@ const getStoryById = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const getStoryByGenre = async (req, res) => {
+    const response = await pool.query("SELECT * FROM story WHERE genre = $1", [
+        req.query.genre
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
 const getAllStories = async (req, res) => {
     const response = await pool.query("SELECT * FROM story");
     res.status(200).json({response: response.rows});
@@ -60,21 +67,21 @@ const getButtonById = async (req, res) => {
 
 // POST routes
 const createPage = async (req, res) => {
-    const response = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3)", [
+    const response = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3) RETURNING id", [
         req.body.story,
         req.body.button1,
         req.body.button2
     ]);
-    res.status(200).json({response: req.body});
+    res.status(200).json({response: response});
 }
 
 const createStory = async (req, res) => {
-    const response = await pool.query("INSERT INTO story(genre, title, description) VALUES ($1, $2, $3)", [
+    const response = await pool.query("INSERT INTO story(genre, title, description) VALUES ($1, $2, $3) RETURNING id", [
         req.body.genre,
         req.body.title,
         req.body.description
     ]);
-    res.status(200).json({response: req.body});
+    res.status(200).json({response: response.rows});
 }
 
 // PUT routes
@@ -89,6 +96,7 @@ const updateStory = async (req, res) => {
 module.exports = {
     getUserById,
     getStoryById,
+    getStoryByGenre,
     getAllStories,
     getPageById,
     getAllPages,

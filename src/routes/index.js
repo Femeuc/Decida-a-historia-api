@@ -5,7 +5,8 @@ const {
     getAllPages,
     getButtonById, 
     getUserById, 
-    getStoryById, 
+    getStoryById,
+    getStoryByGenre,
     getAllStories,
 
     createPage,
@@ -23,6 +24,7 @@ const {
 
 router.get('/users/:id', getUserById);
 router.get('/story/:id', getStoryById);
+router.get('/story', getStoryByGenre);
 router.get('/story', getAllStories);
 router.get('/page/:id', getPageById);
 router.get('/page', getAllPages);
