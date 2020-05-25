@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const parse = require('pg-connection-string').parse;
 var pool = null;
 
-const ENV = "dev"; // prod -> production;  dev -> developtment
+const ENV = "prod"; // prod -> production;  dev -> developtment
 
 if(ENV == "prod") { 
     // Remote Database
