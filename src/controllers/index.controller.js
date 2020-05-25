@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const parse = require('pg-connection-string').parse;
 var pool = null;
 
-const ENV = "dev"; // prod -> production;  dev -> developtment
+const ENV = "prod"; // prod -> production;  dev -> developtment
 
 if(ENV == "prod") { 
     // Remote Database
@@ -81,7 +81,7 @@ const createStory = async (req, res) => {
         req.body.title,
         req.body.description
     ]);
-    res.status(200).json({response: response.rows});
+    res.status(200).json({response: response.rows[0].id});
 }
 
 // PUT routes
