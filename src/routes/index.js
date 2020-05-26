@@ -6,8 +6,8 @@ const {
     getButtonById, 
     getUserById, 
     getStoryById,
-    getStoryByGenre,
     getAllStories,
+    getStoriesByGenre,
 
     createPage,
     createStory,
@@ -24,8 +24,8 @@ const {
 
 router.get('/users/:id', getUserById);
 router.get('/story/:id', getStoryById);
-router.get('/story/genre', getStoryByGenre);
 router.get('/story', getAllStories);
+router.get('/story/genre/:id', getStoriesByGenre);
 router.get('/page/:id', getPageById);
 router.get('/page', getAllPages);
 router.get('/button/:id', getButtonById);

@@ -34,9 +34,9 @@ const getStoryById = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
-const getStoryByGenre = async (req, res) => {
+const getStoriesByGenre = async (req, res) => {
     const response = await pool.query("SELECT * FROM story WHERE genre = $1", [
-        req.query.genre
+        req.params.id
     ]);
     res.status(200).json({response: response.rows});
 }
@@ -96,11 +96,11 @@ const updateStory = async (req, res) => {
 module.exports = {
     getUserById,
     getStoryById,
-    getStoryByGenre,
     getAllStories,
     getPageById,
     getAllPages,
     getButtonById,
+    getStoriesByGenre,
 
     createPage,
     createStory,
