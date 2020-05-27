@@ -58,6 +58,13 @@ const getAllPages = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const getPageWhereButtonIs = async (req, res) => {
+    const response = await pool.query("SELECT * FROM page WHERE " + req.body.name + " = $1", [
+        req.params.id
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
 const getButtonById = async (req, res) => {
     const response = await pool.query("SELECT * FROM button WHERE id = $1", [
         req.params.id
@@ -114,6 +121,7 @@ module.exports = {
     getAllStories,
     getPageById,
     getAllPages,
+    getPageWhereButtonIs,
     getButtonById,
     getStoriesByGenre,
 
