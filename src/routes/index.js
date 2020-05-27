@@ -31,7 +31,9 @@ router.get('/story', getAllStories);
 router.get('/story/genre/:id', getStoriesByGenre);
 router.get('/page/:id', getPageById);
 router.get('/page', getAllPages);
-router.get('page/button1/:id', getPageWhereButtonIs);
+router.get('page/zzz', (req, res) => {
+    res.send("Teste");
+});
 router.get('/button/:id', getButtonById);
 
 router.post('/page/add', createPage);
