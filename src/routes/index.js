@@ -13,7 +13,8 @@ const {
     createStory,
     createButton,
 
-    updateStory
+    updateStory,
+    updateButton
 
 } = require('../controllers/index.controller');
 
@@ -36,5 +37,6 @@ router.post('/story/add', createStory);
 router.post('/button/add', createButton);
 
 router.put('/story/update/:id', updateStory);
+router.put('/button/update/:id', updateButton);
 
 module.exports = router;

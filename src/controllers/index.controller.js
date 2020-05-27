@@ -100,6 +100,14 @@ const updateStory = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const updateButton = async (req, res) => {
+    const response = await pool.query("UPDATE button SET " + req.body.name + " = $1 WHERE id = $2", [
+        req.body.value,
+        req.params.id
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
 module.exports = {
     getUserById,
     getStoryById,
@@ -113,7 +121,8 @@ module.exports = {
     createStory,
     createButton,
 
-    updateStory
+    updateStory,
+    updateButton
 }
 
 // const getUserById = async (req, res) => {
