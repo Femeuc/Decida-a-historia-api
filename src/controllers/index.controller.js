@@ -72,7 +72,7 @@ const createPage = async (req, res) => {
         req.body.button1,
         req.body.button2
     ]);
-    res.status(200).json({response: response});
+    res.status(200).json({response: response.rows[0].id});
 }
 
 const createStory = async (req, res) => {
