@@ -84,6 +84,13 @@ const createStory = async (req, res) => {
     res.status(200).json({response: response.rows[0].id});
 }
 
+const createButton = async (req, res) => {
+    const response = await pool.query("INSERT INTO button(name) VALUES ($1) RETURNING id", [
+        req.body.name
+    ]);
+    res.status(200).json({response: response.rows[0].id});
+}
+
 // PUT routes
 const updateStory = async (req, res) => {
     const response = await pool.query("UPDATE story SET " + req.body.name + " = $1 WHERE id = $2", [
@@ -104,6 +111,7 @@ module.exports = {
 
     createPage,
     createStory,
+    createButton,
 
     updateStory
 }
