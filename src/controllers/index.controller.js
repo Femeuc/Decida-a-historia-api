@@ -72,6 +72,13 @@ const getButtonById = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const getButtonWherePageIs = async (req, res) => {
+    const response = await pool.query("SELECT * FROM button WHERE page = $1", [
+        req.params.id
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
 // POST routes
 const createPage = async (req, res) => {
     const response = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3) RETURNING id", [
@@ -123,6 +130,7 @@ module.exports = {
     getAllPages,
     getPageWhereButtonIs,
     getButtonById,
+    getButtonWherePageIs,
     getStoriesByGenre,
 
     createPage,

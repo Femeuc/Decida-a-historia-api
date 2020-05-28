@@ -4,7 +4,8 @@ const {
     getPageById, 
     getAllPages,
     getPageWhereButtonIs,
-    getButtonById, 
+    getButtonById,
+    getButtonWherePageIs,
     getUserById, 
     getStoryById,
     getAllStories,
@@ -33,6 +34,7 @@ router.get('/page/:id', getPageById);
 router.get('/page', getAllPages);
 router.get('/page/button1/:id', getPageWhereButtonIs);
 router.get('/button/:id', getButtonById);
+router.get('/button/page/:id', getButtonWherePageIs);
 
 router.post('/page/add', createPage);
 router.post('/story/add', createStory);
