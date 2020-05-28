@@ -73,7 +73,7 @@ const getButtonById = async (req, res) => {
 }
 
 const getButtonWherePageIs = async (req, res) => {
-    const response = await pool.query("SELECT * FROM button WHERE page = $1", [
+    const response = await pool.query("SELECT * FROM button WHERE linked_page = $1", [
         req.params.id
     ]);
     res.status(200).json({response: response.rows});
