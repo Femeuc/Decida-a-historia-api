@@ -10,6 +10,7 @@ const {
     getStoryById,
     getAllStories,
     getStoriesByGenre,
+    getPageInnerJoinButton1AndButton2,
 
     createPage,
     createStory,
@@ -35,6 +36,7 @@ router.get('/page', getAllPages);
 router.get('/page/button1/:id', getPageWhereButtonIs);
 router.get('/button/:id', getButtonById);
 router.get('/button/page/:id', getButtonWherePageIs);
+router.get('/page/:id/buttons', getPageInnerJoinButton1AndButton2);
 
 router.post('/page/add', createPage);
 router.post('/story/add', createStory);

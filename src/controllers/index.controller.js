@@ -79,6 +79,19 @@ const getButtonWherePageIs = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
+const getPageInnerJoinButton1AndButton2 = async (req, res) => {
+    let sql = "SELECT page.id AS page_id, page.story AS story, button1.name AS button_1," +
+        " button2.name AS button_2, button1.id AS btn1_id, button2.id AS btn2_id FROM " +
+        "page INNER JOIN button button1 ON page.button1 = button1.id INNER JOIN button" +
+        " button2 ON page.button2 = button2.id WHERE page.id = " + req.params.id;
+
+    const response = await pool.query(sql, [
+        req.params.id
+    ]);
+    res.status(200).json({response: response.rows});
+}
+
+
 // POST routes
 const createPage = async (req, res) => {
     const response = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3) RETURNING id", [
@@ -132,6 +145,7 @@ module.exports = {
     getButtonById,
     getButtonWherePageIs,
     getStoriesByGenre,
+    getPageInnerJoinButton1AndButton2,
 
     createPage,
     createStory,
