@@ -36,3 +36,5 @@ CREATE TABLE "story" (
   "description" text NOT NULL,
   "beginning_page" int
 );
+
+ALTER TABLE "story" ADD FOREIGN KEY ("beginning_page") REFERENCES "page" ("id");
