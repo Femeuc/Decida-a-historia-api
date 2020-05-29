@@ -83,7 +83,7 @@ const getPageInnerJoinButton1AndButton2 = async (req, res) => {
     let sql = "SELECT page.id AS page_id, page.story AS story, button1.name AS button_1," +
         " button2.name AS button_2, button1.id AS btn1_id, button2.id AS btn2_id FROM " +
         "page INNER JOIN button button1 ON page.button1 = button1.id INNER JOIN button" +
-        " button2 ON page.button2 = button2.id WHERE page.id = " + req.params.id;
+        " button2 ON page.button2 = button2.id WHERE page.id = $1";
 
     const response = await pool.query(sql, [
         req.params.id
