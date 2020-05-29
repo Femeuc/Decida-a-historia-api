@@ -118,6 +118,26 @@ const createButton = async (req, res) => {
     res.status(200).json({response: response.rows[0].id});
 }
 
+const createPageAndItsButtons = async (req, res) => {
+    const response1 = await pool.query("INSERT INTO button(name) VALUES ($1) RETURNING id", [
+        req.body.button1
+    ]);
+    const response2 = await pool.query("INSERT INTO button(name) VALUES ($1) RETURNING id", [
+        req.body.button2
+    ]);
+
+    let button1_id = response1.rows[0].id;
+    let button2_id = response2.rows[0].id;
+
+    const response3 = await pool.query("INSERT INTO page(story, button1, button2) VALUES ($1, $2, $3) RETURNING id", [
+        req.body.story,
+        button1_id,
+        button2_id
+    ]);
+
+    res.status(200).json({response: response3.rows[0].id});
+ }
+
 // PUT routes
 const updateStory = async (req, res) => {
     const response = await pool.query("UPDATE story SET " + req.body.name + " = $1 WHERE id = $2", [
@@ -150,6 +170,7 @@ module.exports = {
     createPage,
     createStory,
     createButton,
+    createPageAndItsButtons,
 
     updateStory,
     updateButton
