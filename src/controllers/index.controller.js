@@ -118,6 +118,14 @@ const createButton = async (req, res) => {
     res.status(200).json({response: response.rows[0].id});
 }
 
+const createButtonWithRelation = async (req, res) => {
+  const response = await pool.query("INSERT INTO button(name, linked_page) VALUES ($1, $2) RETURNING id", [
+      req.body.name,
+      req.body.id
+  ]);
+  res.status(200).json({response: response.rows[0].id});
+}
+
 const createPageAndItsButtons = async (req, res) => {
     const response1 = await pool.query("INSERT INTO button(name) VALUES ($1) RETURNING id", [
         req.body.button1
@@ -170,6 +178,7 @@ module.exports = {
     createPage,
     createStory,
     createButton,
+    createButtonWithRelation,
     createPageAndItsButtons,
 
     updateStory,

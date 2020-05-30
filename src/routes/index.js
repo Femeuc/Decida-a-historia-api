@@ -15,6 +15,7 @@ const {
     createPage,
     createStory,
     createButton,
+    createButtonWithRelation,
     createPageAndItsButtons,
 
     updateStory,
@@ -42,6 +43,7 @@ router.get('/page/:id/buttons', getPageInnerJoinButton1AndButton2);
 router.post('/page/add', createPage);
 router.post('/story/add', createStory);
 router.post('/button/add', createButton);
+router.post('/button/page/add', createButtonWithRelation);
 router.post('/page/buttons/add', createPageAndItsButtons);
 
 router.put('/story/update/:id', updateStory);
