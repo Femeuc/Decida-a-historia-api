@@ -27,9 +27,10 @@ const getUserById = async (req, res) => {
     res.status(200).json({response: response.rows});
 }
 
-const getUserWhere = async (req, res) => {
-    const response = await pool.query("SELECT * FROM users WHERE " + req.body.name + " = $1", [
-        req.body.value
+const getUserByUsername = async (req, res) => {
+    String username = req.query.username;
+    const response = await pool.query("SELECT * FROM users WHERE username = $1", [
+        username
     ]);
     res.status(200).json({response: response.rows});
 }
@@ -172,7 +173,7 @@ const updateButton = async (req, res) => {
 
 module.exports = {
     getUserById,
-    getUserWhere,
+    getUserByUsername,
     getStoryById,
     getAllStories,
     getPageById,
