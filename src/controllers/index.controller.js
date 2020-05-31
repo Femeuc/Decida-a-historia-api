@@ -28,9 +28,8 @@ const getUserById = async (req, res) => {
 }
 
 const getUserByUsername = async (req, res) => {
-    const username = req.query.username;
     const response = await pool.query("SELECT * FROM users WHERE username = $1", [
-        username
+        req.body.username
     ]);
     res.status(200).json({response: response.rows});
 }
