@@ -8,8 +8,8 @@ CREATE TABLE "users" (
 CREATE TABLE "page" (
   "id" SERIAL PRIMARY KEY,
   "story" text NOT NULL,
-  "button1" int NOT NULL,
-  "button2" int NOT NULL
+  "button1" int,
+  "button2" int
 );
 
 CREATE TABLE "button" (
