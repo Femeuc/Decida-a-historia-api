@@ -30,7 +30,7 @@ const {
 // router.put('/users/:id', updateUser);
 // router.delete('/users/:id', deleteUser);
 
-router.get('/users/:id', getUserById);
+router.get('/users/id/:id', getUserById);
 router.get('/users/where', getUserByUsername);
 router.get('/story/:id', getStoryById);
 router.get('/story', getAllStories);
