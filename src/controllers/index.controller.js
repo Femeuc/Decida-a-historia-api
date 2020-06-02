@@ -153,6 +153,24 @@ const createPageAndItsButtons = async (req, res) => {
     res.status(200).json({response: response3.rows[0].id});
  }
 
+const createUser = async (req, res) => { // returns null if the chosen username is unavailable
+    const response1 = await pool.query("SELECT COUNT(*) FROM users WHERE username = $1", [
+        req.body.username
+    ]);
+    let result = null;
+    if(parseInt(response1.rows[0].count) == 0) { // if the chosen username is available
+       const response2 = await pool.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id", [
+               req.body.username,
+               req.body.password
+       ]);
+       result = response2.rows[0].id;
+    }
+    res.status(200).json({
+        response : result
+    });
+ }
+
+
 // PUT routes
 const updateStory = async (req, res) => {
     const response = await pool.query("UPDATE story SET " + req.body.name + " = $1 WHERE id = $2", [
@@ -188,6 +206,7 @@ module.exports = {
     createButton,
     createButtonWithRelation,
     createPageAndItsButtons,
+    createUser,
 
     updateStory,
     updateButton
