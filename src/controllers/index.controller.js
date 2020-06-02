@@ -175,7 +175,6 @@ const createUser = async (req, res) => { // returns null if the chosen username 
     });
  }
 
-
 // PUT routes
 const updateStory = async (req, res) => {
     const response = await pool.query("UPDATE story SET " + req.body.name + " = $1 WHERE id = $2", [
@@ -191,6 +190,14 @@ const updateButton = async (req, res) => {
         req.params.id
     ]);
     res.status(200).json({response: response.rows});
+}
+
+const updateUser = async (req, res) => {
+   const response = await pool.query("UPDATE users SET " + req.body.name + " = $1 WHERE id = $2", [
+       req.body.value,
+       req.params.id
+   ]);
+   res.status(200).json({response: response.rows});
 }
 
 module.exports = {
@@ -215,7 +222,8 @@ module.exports = {
     createUser,
 
     updateStory,
-    updateButton
+    updateButton,
+    updateUser
 }
 
 // const getUserById = async (req, res) => {
