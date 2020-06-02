@@ -8,6 +8,7 @@ const {
     getButtonWherePageIs,
     getUserById,
     getUserByUsername,
+    getAllUsers,
     getStoryById,
     getAllStories,
     getStoriesByGenre,
@@ -31,6 +32,7 @@ const {
 // router.put('/users/:id', updateUser);
 // router.delete('/users/:id', deleteUser);
 
+router.get('/users', getAllUsers);
 router.get('/users/id/:id', getUserById);
 router.get('/users/where', getUserByUsername);
 router.get('/story/:id', getStoryById);
