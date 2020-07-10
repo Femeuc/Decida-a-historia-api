@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
+// cors config // origin: 'http://127.0.0.1:3000/'
+app.use(cors({
+  origin: '*'
+}));
 
 // middlewares
 app.use(express.json());

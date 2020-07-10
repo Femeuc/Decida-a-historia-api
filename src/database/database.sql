@@ -38,3 +38,15 @@ CREATE TABLE "story" (
 );
 
 ALTER TABLE "story" ADD FOREIGN KEY ("beginning_page") REFERENCES "page" ("id");
+
+ALTER TABLE users DROP CONSTRAINT users_story_checkpoint_fkey;
+ALTER TABLE users ADD CONSTRAINT parent_id_fk FOREIGN KEY ("story_checkpoint") REFERENCES "page" ("id") ON DELETE SET NULL;
+
+ALTER TABLE page DROP CONSTRAINT page_button1_fkey;
+ALTER TABLE page ADD CONSTRAINT page_button1_fkey FOREIGN KEY ("button1") REFERENCES "button" ("id") ON DELETE CASCADE;
+
+ALTER TABLE page DROP CONSTRAINT page_button2_fkey;
+ALTER TABLE page ADD CONSTRAINT page_button2_fkey FOREIGN KEY ("button2") REFERENCES "button" ("id") ON DELETE CASCADE;
+
+ALTER TABLE button DROP CONSTRAINT button_linked_page_fkey;
+ALTER TABLE button ADD CONSTRAINT button_linked_page_fkey FOREIGN KEY ("linked_page") REFERENCES "page" ("id") ON DELETE CASCADE;
